@@ -1,0 +1,68 @@
+.main-class {
+    display: flex;
+    flex-direction: row;
+}
+
+.section-class {
+    display: flex;
+    flex-direction: row;
+}
+
+.div-class-blank {
+    width: 4vw;
+    height: 4vw;
+    border: solid 1px #212121;
+}
+
+.div-class-solid {
+    width: 4vw;
+    height: 4vw;
+    background-color: #212121;
+    border: solid 1px #212121;
+}
+
+.div-class-char {
+    font-family: 'Audiowide', cursive;
+    font-size: 2vw;
+    width: 4vw;
+    height: 4vw;
+    border: solid 1px transparent;
+    text-align: center;
+    text-align: middle;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+.section-class-head {
+    display: block;
+    flex-direction: row;
+    font-family: 'Audiowide', cursive;
+    font-size: 3vw;
+    justify-content: center;
+    height: 6vw;
+}
+
+.section-class-column {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+
+.section-class-side-left {
+    display: flex;
+    flex-direction: column;
+    height: 32vw;
+}
+
+img {
+    height: 32vw;
+}
