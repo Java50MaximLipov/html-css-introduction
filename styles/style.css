@@ -3,6 +3,10 @@
     flex-direction: row;
 }
 
+.cell{
+    
+}
+
 .section-class {
     display: flex;
     flex-direction: row;
