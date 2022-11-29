@@ -1,132 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
-    <title>Containers</title>
+    <link rel="stylesheet" href="styles/dogs.css">
+    <link rel="shortcut icon" href="images//faiconDog2.png" type="image/x-icon">
+    <title>Dogs Gallery</title>
 </head>
-
 <body>
+    <header class="logo">
+        <h2>Dogs Gallery</h2>
+    </header>
     <main class="main-class">
-        
-        <section class="section-class-side">
-            <img src="images/peron2.png">
+        <section class="details-container">
+            <img class="details-image" src="images/dog1.jpg">
+            <span class="details-title">Lorem ipsum dolor sit amet</span>
         </section>
-
-        <section class="section-class-column">
-            <section class="section-class">
-                <div class="div-class-char">8</div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-            </section>
-            <section class="section-class">
-                <div class="div-class-char">7</div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-            </section>
-            <section class="section-class">
-                <div class="div-class-char">6</div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-            </section>
-            <section class="section-class">
-                <div class="div-class-char">5</div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-            </section>
-            <section class="section-class">
-                <div class="div-class-char">4</div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-            </section>
-            <section class="section-class">
-                <div class="div-class-char">3</div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-            </section>
-            <section class="section-class">
-                <div class="div-class-char">2</div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-            </section>
-            <section class="section-class">
-                <div class="div-class-char">1</div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-                <div class="div-class-solid"></div>
-                <div class="div-class-blank"></div>
-            </section>
-            <section class="section-class">
-                <div class="div-class-char"></div>
-                <div class="div-class-char">A</div>
-                <div class="div-class-char">B</div>
-                <div class="div-class-char">C</div>
-                <div class="div-class-char">D</div>
-                <div class="div-class-char">E</div>
-                <div class="div-class-char">F</div>
-                <div class="div-class-char">G</div>
-                <div class="div-class-char">H</div>
-                <div class="div-class-char"></div>
-            </section>
-        </section>
-
-        <section class="section-class-side">
-            <img src="images/peron1.png">
-        </section>
-
+        <ul class="thumbnails-list">
+            <li class="thumbnails-item">
+                <a class="thumbnails-anchor" href="#">
+                    <img class="thumbnails-image" src="images/dog1.jpg">
+                    <span class="thumbnails-title">Dog 1</span>
+                </a>
+            </li>
+            <li class="thumbnails-item">
+                <a class="thumbnails-anchor" href="#">
+                    <img class="thumbnails-image" src="images/dog2.jpg">
+                    <span class="thumbnails-title">Dog 2</span>
+                </a>
+            </li>
+            <li class="thumbnails-item">
+                <a class="thumbnails-anchor" href="#">
+                    <img class="thumbnails-image" src="images/dog3.jpg">
+                    <span class="thumbnails-title">Dog 3</span>
+                </a>
+            </li>
+            <li class="thumbnails-item">
+                <a class="thumbnails-anchor" href="#">
+                    <img class="thumbnails-image" src="images/dog4.jpg">
+                    <span class="thumbnails-title">Dog 4</span>
+                </a>
+            </li>
+            <li class="thumbnails-item">
+                <a class="thumbnails-anchor" href="#">
+                    <img class="thumbnails-image" src="images/dog5.jpg">
+                    <span class="thumbnails-title">Dog 5</span>
+                </a>
+            </li>
+            <li class="thumbnails-item">
+                <a class="thumbnails-anchor" href="#">
+                    <img class="thumbnails-image" src="images/dog1.jpg">
+                    <span class="thumbnails-title">Dog 1</span>
+                </a>
+            </li>
+            <li class="thumbnails-item">
+                <a class="thumbnails-anchor" href="#">
+                    <img class="thumbnails-image" src="images/dog2.jpg">
+                    <span class="thumbnails-title">Dog 2</span>
+                </a>
+            </li>
+            <li class="thumbnails-item">
+                <a class="thumbnails-anchor" href="#">
+                    <img class="thumbnails-image" src="images/dog3.jpg">
+                    <span class="thumbnails-title">Dog 3</span>
+                </a>
+            </li>
+            <li class="thumbnails-item">
+                <a class="thumbnails-anchor" href="#">
+                    <img class="thumbnails-image" src="images/dog4.jpg">
+                    <span class="thumbnails-title">Dog 4</span>
+                </a>
+            </li>
+            <li class="thumbnails-item">
+                <a class="thumbnails-anchor" href="#">
+                    <img class="thumbnails-image" src="images/dog5.jpg">
+                    <span class="thumbnails-title">Dog 5</span>
+                </a>
+            </li>
+            <li class="thumbnails-item">
+                <a class="thumbnails-anchor" href="#">
+                    <img class="thumbnails-image" src="images/dog1.jpg">
+                    <span class="thumbnails-title">Dog 1</span>
+                </a>
+            </li>
+            <li class="thumbnails-item">
+                <a class="thumbnails-anchor" href="#">
+                    <img class="thumbnails-image" src="images/dog2.jpg">
+                    <span class="thumbnails-title">Dog 2</span>
+                </a>
+            </li>
+            <li class="thumbnails-item">
+                <a class="thumbnails-anchor" href="#">
+                    <img class="thumbnails-image" src="images/dog3.jpg">
+                    <span class="thumbnails-title">Dog 3</span>
+                </a>
+            </li>
+            <li class="thumbnails-item">
+                <a class="thumbnails-anchor" href="#">
+                    <img class="thumbnails-image" src="images/dog4.jpg">
+                    <span class="thumbnails-title">Dog 4</span>
+                </a>
+            </li>
+            <li class="thumbnails-item">
+                <a class="thumbnails-anchor" href="#">
+                    <img class="thumbnails-image" src="images/dog5.jpg">
+                    <span class="thumbnails-title">Dog 5</span>
+                </a>
+            </li>
+        </ul>
     </main>
 </body>
-
 </html>
