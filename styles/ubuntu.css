@@ -1,61 +1,88 @@
 html {
     height: 100%
 }
+
 body {
     --thumbnails-image-width: 25vw;
     --thumbnails-image-height: 15vw;
     --thumbnails-title-height: calc(var(--thumbnails-image-height) * 0.33);
     --details-image-width: 60vw;
     --details-image-height: 50vw;
+    --text-color-body: #111111;
 }
+
 body {
     height: 100%;
-    background-color: azure;
+    background-color: white;
     display: flex;
     flex-direction: column;
     margin: 0;
 }
-.logo {
-    display: block;
+
+.logo-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 56px;
+    margin-bottom: 16px;
+    padding: 0px 16px;
+    background-color: #333333;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.19), 0 2px 2px rgba(0, 0, 0, 0.23);
+}
+
+.logo-image {
+    height: 24px;
+    justify-content: center;
+}
+
+.logo-title {
+    width: 100%;
+    padding-right: 16px;
     text-align: center;
-    background-color: beige;
-    font-size: 1em;
-    text-transform: uppercase;
     font-family: 'Ubuntu', sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: white;
 }
-h2 {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
+
 .main-class {
     display: flex;
     flex-direction: column;
     justify-content: center;
     flex-grow: 1;
 }
+
 .details-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-bottom: 2vh;
 }
+
 .details-frame {
     position: relative;
 }
+
 .details-image {
     width: var(--details-image-width);
     height: var(--details-image-height);
     border-radius: 25%;
+    box-shadow: 0 3.5vw 7vw rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
+
 .details-title {
     display: block;
-    background-color: aliceblue;
+    background-color: white;
     font-size: 1.2em;
     font-family: 'Ubuntu Condensed', sans-serif;
+    color: var(--text-color-body);
     position: absolute;
-    bottom: 3.5vh;
-    left: -2vw;
+    padding: 0.1em 0.4em;
+    bottom: 5%;
+    left: -10%;
+    box-shadow: 0 3.5vw 7vw rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
+
 .thumbnails-list {
     display: flex;
     flex-wrap: wrap;
@@ -66,8 +93,9 @@ h2 {
     padding-left: 0;
     margin-top: 3vh;
 }
+
 .thumbnails-item {
-    border: solid 2px blueviolet;
+    border: solid 1px #AEA79F;
     margin-top: 2vh;
     border-radius: 25%;
     overflow: hidden;
@@ -75,23 +103,28 @@ h2 {
     min-width: var(--thumbnails-image-width);
     max-width: var(--thumbnails-image-width);
     margin-left: 1vw;
+    box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.19), 0 2px 2px rgba(0, 0, 0, 0.23);
 }
+
 .thumbnails-item:hover {
     transform: scale(1.1);
 }
+
 .thumbnails-anchor {
     text-decoration: none;
 }
+
 .thumbnails-image {
     width: var(--thumbnails-image-width);
     height: var(--thumbnails-image-height);
     display: block;
 }
+
 .thumbnails-title {
     display: block;
     text-align: center;
-    background-color: antiquewhite;
-    color: black;
+    background-color: #FDEEE9;
+    color: var(--text-color-body);
     font-family: 'Ubuntu Condensed', sans-serif;
     height: var(--thumbnails-title-height);
 }
@@ -104,17 +137,27 @@ h2 {
         --details-image-width: 45vw;
         --details-image-height: 35vw;
     }
+
     .logo {
         font-size: 1em;
     }
+
     .main-class {
         flex-direction: row;
         justify-content: space-around;
     }
+
     .details-container {
         justify-content: center;
         margin-bottom: 0;
     }
+    .details-image {
+        box-shadow: 0 1.7vw 3.5vw rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
+    }
+    .details-title {
+        box-shadow: 0 1.7vw 3.5vw rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
+    }
+
     .thumbnails-list {
         padding-right: 2vw;
         flex-direction: column;
@@ -125,16 +168,32 @@ h2 {
     }
 
 }
+
 @media (min-width: 1000px) {
+    .logo-container {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19), 0 1px 1px rgba(0, 0, 0, 0.23);
+    }
     .details-container {
         margin-top: 5vh;
         margin-right: 5vw;
     }
+    .details-image {
+        box-shadow: 0 1.7vw 3.5vw rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
+    }
+    .details-title {
+        box-shadow: 0 1.7vw 3.5vw rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
+    }
+    
+
     .thumbnails-list {
         margin-top: 2.5vh;
         max-height: 86vh;
     }
+
     .thumbnails-title {
-        font-size: 1.5em;
+        font-size: 1.2em;
+    }
+    .thumbnails-item {
+        box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.19), 0 1px 1px rgba(0, 0, 0, 0.23);
     }
 }
