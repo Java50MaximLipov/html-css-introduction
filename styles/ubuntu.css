@@ -12,11 +12,11 @@ body {
 }
 
 body {
-    height: 100%;
-    background-color: white;
     display: flex;
     flex-direction: column;
+    height: 100%;
     margin: 0;
+    background-color: white;
 }
 
 .logo-container {
@@ -24,21 +24,21 @@ body {
     flex-direction: row;
     align-items: center;
     height: 56px;
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     padding: 0px 16px;
     background-color: #333333;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.19), 0 2px 2px rgba(0, 0, 0, 0.23);
 }
 
 .logo-image {
-    height: 24px;
     justify-content: center;
+    height: 24px;
 }
 
 .logo-title {
+    text-align: center;
     width: 100%;
     padding-right: 16px;
-    text-align: center;
     font-family: 'Ubuntu', sans-serif;
     font-size: 20px;
     text-transform: uppercase;
@@ -48,7 +48,7 @@ body {
 .main-class {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     flex-grow: 1;
 }
 
@@ -66,43 +66,43 @@ body {
 .details-image {
     width: var(--details-image-width);
     height: var(--details-image-height);
-    border-radius: 25%;
+    border-radius: 16px;
     box-shadow: 0 3.5vw 7vw rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .details-title {
     display: block;
+    position: absolute;
+    bottom: 5%;
+    left: -10%;
+    padding: 0.1em 0.4em;
     background-color: white;
     font-size: 1.2em;
     font-family: 'Ubuntu Condensed', sans-serif;
     color: var(--text-color-body);
-    position: absolute;
-    padding: 0.1em 0.4em;
-    bottom: 5%;
-    left: -10%;
     box-shadow: 0 3.5vw 7vw rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
 
 .thumbnails-list {
     display: flex;
     flex-wrap: wrap;
-    max-height: 37vh;
-    overflow-y: scroll;
-    list-style: none;
     justify-content: space-around;
+    overflow-y: scroll;
+    max-height: 37vh;
     padding-left: 0;
     margin-top: 3vh;
+    list-style: none;
 }
 
 .thumbnails-item {
-    border: solid 1px #AEA79F;
-    margin-top: 2vh;
-    border-radius: 25%;
-    overflow: hidden;
     min-height: calc(var(--thumbnails-image-height) + var(--thumbnails-title-height));
     min-width: var(--thumbnails-image-width);
     max-width: var(--thumbnails-image-width);
     margin-left: 1vw;
+    margin-top: 2vh;
+    overflow: hidden;
+    border: solid 1px #AEA79F;
+    border-radius: 8px;
     box-shadow: 0 1vw 2vw rgba(0, 0, 0, 0.19), 0 2px 2px rgba(0, 0, 0, 0.23);
 }
 
@@ -115,18 +115,18 @@ body {
 }
 
 .thumbnails-image {
+    display: block;
     width: var(--thumbnails-image-width);
     height: var(--thumbnails-image-height);
-    display: block;
 }
 
 .thumbnails-title {
     display: block;
     text-align: center;
+    height: var(--thumbnails-title-height);
     background-color: #FDEEE9;
     color: var(--text-color-body);
     font-family: 'Ubuntu Condensed', sans-serif;
-    height: var(--thumbnails-title-height);
 }
 
 @media (min-width: 560px) {
@@ -144,27 +144,32 @@ body {
 
     .main-class {
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: flex-start;
+        align-items: flex-start;
     }
 
     .details-container {
+        flex-basis: 75%;
         justify-content: center;
         margin-bottom: 0;
     }
+
     .details-image {
         box-shadow: 0 1.7vw 3.5vw rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
     }
+
     .details-title {
         box-shadow: 0 1.7vw 3.5vw rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
     }
 
     .thumbnails-list {
-        padding-right: 2vw;
         flex-direction: column;
-        flex-wrap: nowrap;
-        max-height: 75vh;
-        order: -1;
         justify-content: flex-start;
+        align-items: center;
+        flex-wrap: nowrap;
+        flex-basis: 25%;
+        order: -1;
+        max-height: 75vh;
     }
 
 }
@@ -173,27 +178,31 @@ body {
     .logo-container {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19), 0 1px 1px rgba(0, 0, 0, 0.23);
     }
+
     .details-container {
         margin-top: 5vh;
         margin-right: 5vw;
     }
+
     .details-image {
         box-shadow: 0 1.7vw 3.5vw rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
     }
+
     .details-title {
         box-shadow: 0 1.7vw 3.5vw rgba(0, 0, 0, 0.25), 0 5px 5px rgba(0, 0, 0, 0.22);
     }
-    
 
     .thumbnails-list {
         margin-top: 2.5vh;
-        max-height: 86vh;
+        max-height: 78vh;
     }
 
     .thumbnails-title {
         font-size: 1.2em;
     }
+
     .thumbnails-item {
         box-shadow: 0 0.5vw 1vw rgba(0, 0, 0, 0.19), 0 1px 1px rgba(0, 0, 0, 0.23);
     }
+
 }
