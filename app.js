@@ -1,82 +1,85 @@
-let number1 = 12345;
-let number2 = -12345;
-let number3 = 0;
-let number4 = 1234.567
-let exprString1 = "9+100/2";
-let exprString2 = "10**2-50";
-let exprString3 = "(25+75)*2-50"
-let exprString4 = "5**3-25*100+42";
-console.log("Sum of all digits");
-console.log(getDigitsSum(number1));
-console.log(getDigitsSum(number2));
-console.log(getDigitsSum(number3));
-console.log(getDigitsSum(number4));
-console.log();
-console.log("Compute string expression");
-console.log(computeExpression(exprString1));
-console.log(computeExpression(exprString2));
-console.log(computeExpression(exprString3));
-console.log(computeExpression(exprString4));
-console.log();
-console.log("Print ananas");
-console.log(printAnanas());
-console.log();
-console.log("Reverse order");
-console.log(reverse(number1));
-console.log(reverse(number2));
-console.log(reverse(number3));
-console.log(reverse(number4));
-
-function getDigitsSum(number) {
-    //computes sum af all digits in the integer part of the number
-    //number may be either negative or positive or 0
-
-    let absNumber = Math.abs(number);
-    let result = 0;
-    let remainder = 0;
-    while (absNumber != 0) {
-        remainder = Math.trunc(absNumber % 10);
-        absNumber = Math.floor(absNumber / 10);
-        result += remainder;
+function myParseInt(strNum, base) {
+    base = base || 10;
+    let res = 0;
+    let sign = "";
+    if (strNum < 0) {
+        strNum = strNum.substring(1);           //  removing the "-" sign from the string
+        sign = "-";
     }
-    return result * sign(number);
-
-}
-function computeExpression(expressionString) {
-    //example "100/(10+20)**2"
-    //task for searching in Internet
-    //only line of code
-
-    return eval(expressionString);
-}
-
-function printAnanas() {
-    //TODO 
-    //To use only "A" and "S"
-    //print "ananas"
-
-    let result = "A" + ("A" * 2) + "A" + "S";
-    return result.toLowerCase();
-}
-
-function reverse(number) {
-    //returns string with digits of given number in the reversed order
-    //example reverse(1234) should return 4321
-    //example reverse(-1234) should return -4321
-
-    let absNumber = Math.abs(number);
-    let result = 0;
-    let remainder = 0;
-    while (absNumber != 0) {
-        remainder = Math.trunc(absNumber % 10);
-        absNumber = Math.floor(absNumber / 10);
-        result = result * 10 + remainder;
+    for (let i = 0; i < strNum.length; i++) {
+        if (strNum[i] === ".") { break }        //  if there is fractial part, it cutting off by exiting the loop
+        if (getCode(strNum[i]) < base) {
+            res = res * base + getCode(strNum[i]);
+        } else {
+            { break }                           //  if there is a letter that not related to base value - the loop is stops
+        }
     }
-    return result * sign(number);
+    return sign + res;
+}
+function getCode(symbol) {
+    symbol = symbol.toLowerCase();
+    const codeA = 'a'.charCodeAt();
+    const res = symbol <= '9' ? +symbol : symbol.charCodeAt() - codeA + 10;
+    return res;
 }
 
-function sign(number) {
-    let sign = 1;
-    if (number < 0) sign *= -1;
-    return sign;
+// TEST VALUES
+let strNum1 = "ff";
+let strNum2 = "123";
+let strNum3 = "Java";
+let strNum4 = "123m";
+let strNum5 = "123.5";
+let strNum6 = "-123";
+
+// TEST RESULTS
+console.log("String number is: " + strNum1 + ".  parseInt result: " + parseInt(strNum1, 16) + ".  myParseInt result is: " + myParseInt(strNum1, 16) + ".");
+console.log("String number is: " + strNum2 + ".  parseInt result: " + parseInt(strNum2) + ".  myParseInt result is: " + myParseInt(strNum2) + ".");
+console.log("String number is: " + strNum3 + ".  parseInt result: " + parseInt(strNum3, 36) + ".  myParseInt result is: " + myParseInt(strNum3, 36) + ".");
+console.log("String number is: " + strNum4 + ".  parseInt result: " + parseInt(strNum4) + ".  myParseInt result is: " + myParseInt(strNum4) + ".");
+console.log("String number is: " + strNum5 + ".  parseInt result: " + parseInt(strNum5) + ".  myParseInt result is: " + myParseInt(strNum5) + ".");
+console.log("String number is: " + strNum6 + ".  parseInt result: " + parseInt(strNum6) + ".  myParseInt result is: " + myParseInt(strNum6) + ".");
+
+function myToString(number, base) {
+    base = base || 10;
+    let sign = (number < 0) ? "-" : "";         //  sign definition
+    let separator = (number % 1) ? "." : "";    //  separator devinition
+    number = Math.abs(number);
+    let numFract = "" + number;                 //  converting number to string for cut off the integer value
+    numFract = numFract.split(".")[1];          //  spliting the number string by separator
+    numFract = +numFract;
+    number = Math.trunc(number);
+    return sign + numberToString(number,base) + separator + numberToString(numFract,base);
 }
+function numberToString(number,base){
+    let result = "";
+    do {
+        const digit = number % base;
+        const symbol = getSymbol(digit);
+        result = symbol + result;
+        number = Math.trunc(number / base);
+    } while (number);
+    return result;
+    }
+function getSymbol(digit) {
+    const codeA = 'a'.charCodeAt();
+    let symbol;
+    if (digit < 10) {
+        symbol = "" + digit;
+    } else {
+        const codeAscii = digit - 10 + codeA;
+        symbol = String.fromCharCode(codeAscii);
+    }
+    return symbol;
+}
+
+// TEST VALUES
+let number1 = 900550;
+let number2 = 123.45;
+let number3 = 255;
+let number4 = -256;
+
+// TEST RESULTS
+console.log("Number: " + number1 + ".  toString result: " + number1.toString(36) + ".  myToString result: " + myToString(number1, 36) + ".");
+console.log("Number: " + number2 + ".  toString result: " + number2.toString() + ".  myToString result: " + myToString(number2) + ".");
+console.log("Number: " + number3 + ".  toString result: " + number3.toString(16) + ".  myToString result: " + myToString(number3, 16) + ".");
+console.log("Number: " + number4 + ".  toString result: " + number4.toString() + ".  myToString result: " + myToString(number4) + ".");
