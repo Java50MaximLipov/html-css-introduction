@@ -1,85 +1,75 @@
-function myParseInt(strNum, base) {
-    base = base || 10;
-    let res = 0;
-    let sign = "";
-    if (strNum < 0) {
-        strNum = strNum.substring(1);           //  removing the "-" sign from the string
-        sign = "-";
-    }
-    for (let i = 0; i < strNum.length; i++) {
-        if (strNum[i] === ".") { break }        //  if there is fractial part, it cutting off by exiting the loop
-        if (getCode(strNum[i]) < base) {
-            res = res * base + getCode(strNum[i]);
-        } else {
-            { break }                           //  if there is a letter that not related to base value - the loop is stops
+// const ar = [];
+// const ar1=[1,2,3,4];
+// ar.push(...ar1);
+// ar.push("abc");
+function getRandomNumber(min, max) {
+    return min + Math.trunc(Math.random() * (max - min + 1));
+}
+function getRandomMatrix(rows, columns, min, max) {
+    const matrix = [];
+    for (let i = 0; i < rows; i++) {
+        matrix.push([]);
+        for (let j = 0; j < columns; j++) {
+            matrix[i].push(getRandomNumber(min, max));
         }
     }
-    return sign + res;
-}
-function getCode(symbol) {
-    symbol = symbol.toLowerCase();
-    const codeA = 'a'.charCodeAt();
-    const res = symbol <= '9' ? +symbol : symbol.charCodeAt() - codeA + 10;
-    return res;
+    return matrix;
 }
 
-// TEST VALUES
-let strNum1 = "ff";
-let strNum2 = "123";
-let strNum3 = "Java";
-let strNum4 = "123m";
-let strNum5 = "123.5";
-let strNum6 = "-123";
-
-// TEST RESULTS
-console.log("String number is: " + strNum1 + ".  parseInt result: " + parseInt(strNum1, 16) + ".  myParseInt result is: " + myParseInt(strNum1, 16) + ".");
-console.log("String number is: " + strNum2 + ".  parseInt result: " + parseInt(strNum2) + ".  myParseInt result is: " + myParseInt(strNum2) + ".");
-console.log("String number is: " + strNum3 + ".  parseInt result: " + parseInt(strNum3, 36) + ".  myParseInt result is: " + myParseInt(strNum3, 36) + ".");
-console.log("String number is: " + strNum4 + ".  parseInt result: " + parseInt(strNum4) + ".  myParseInt result is: " + myParseInt(strNum4) + ".");
-console.log("String number is: " + strNum5 + ".  parseInt result: " + parseInt(strNum5) + ".  myParseInt result is: " + myParseInt(strNum5) + ".");
-console.log("String number is: " + strNum6 + ".  parseInt result: " + parseInt(strNum6) + ".  myParseInt result is: " + myParseInt(strNum6) + ".");
-
-function myToString(number, base) {
-    base = base || 10;
-    let sign = (number < 0) ? "-" : "";         //  sign definition
-    let separator = (number % 1) ? "." : "";    //  separator devinition
-    number = Math.abs(number);
-    let numFract = "" + number;                 //  converting number to string for cut off the integer value
-    numFract = numFract.split(".")[1];          //  spliting the number string by separator
-    numFract = +numFract;
-    number = Math.trunc(number);
-    return sign + numberToString(number,base) + separator + numberToString(numFract,base);
-}
-function numberToString(number,base){
-    let result = "";
-    do {
-        const digit = number % base;
-        const symbol = getSymbol(digit);
-        result = symbol + result;
-        number = Math.trunc(number / base);
-    } while (number);
-    return result;
+//  HW-13 Get HTML <ul> string
+function getHtmlUl(array) {
+    array = ['<ul class="list_class">'];
+    let htmlString = "";
+    let quantity = getRandomNumber(4, 6);
+    let div = "";
+    const liClass = '<li class="item_class">';
+    for (let i = 0; i < quantity; i++) {
+        div = getDivClass();
+        array.push(liClass + "<div " + div + "></div></li>");
     }
-function getSymbol(digit) {
-    const codeA = 'a'.charCodeAt();
-    let symbol;
-    if (digit < 10) {
-        symbol = "" + digit;
-    } else {
-        const codeAscii = digit - 10 + codeA;
-        symbol = String.fromCharCode(codeAscii);
-    }
-    return symbol;
+    array.push('</ul>')
+    htmlString = array.join("");
+    return htmlString;
+}
+function getDivClass() {
+    const divClassType = getRandomNumber(0, 1) === 0 ? 'white' : 'black';
+    const divClassResult = `class="${divClassType}"`;
+    return divClassResult;
 }
 
-// TEST VALUES
-let number1 = 900550;
-let number2 = 123.45;
-let number3 = 255;
-let number4 = -256;
 
-// TEST RESULTS
-console.log("Number: " + number1 + ".  toString result: " + number1.toString(36) + ".  myToString result: " + myToString(number1, 36) + ".");
-console.log("Number: " + number2 + ".  toString result: " + number2.toString() + ".  myToString result: " + myToString(number2) + ".");
-console.log("Number: " + number3 + ".  toString result: " + number3.toString(16) + ".  myToString result: " + myToString(number3, 16) + ".");
-console.log("Number: " + number4 + ".  toString result: " + number4.toString() + ".  myToString result: " + myToString(number4) + ".");
+function matrixTransp(matrix) {
+    //  TODO
+    //  return transp matrix
+    //  matrixInput =   [[1, 2],        rows[1]/columns[1] = 1 => 
+    //                   [3, 4],
+    //                   [4, 5]]
+    //  matrixOutput =  [[1, 3, 4]
+    //                   [2, 4, 5]]
+    const matrixRes=[];
+    let matrixString = matrix.join(",");
+    const tempMatrixArray=(matrixString);
+    console.log("temp array is "+tempMatrixArray);
+    const length=tempMatrixArray.length;
+    let rowsArray=[];
+    let columnsArray=[];
+    for(let i=0; i<length;i++){
+        if(i%2){
+            columnsArray.push[i]
+        }else{
+            rowsArray.push[i]
+        }
+        // (!i%2)?columnsArray.push[i]:rowsArray.push[i];
+    }
+    for(let i=0;i<rowsArray.length;i++){
+        matrixRes.push(rowsArray);
+        for(let j=0;j<columnsArray.length;j++){
+            matrixRes[i].push(columnsArray);
+        }
+    }
+    return matrixRes;
+}
+
+const matrix = getRandomMatrix(3,2,1,3);
+console.log(matrix);
+console.log(matrixTransp(matrix));
