@@ -1,7 +1,3 @@
-// const ar = [];
-// const ar1=[1,2,3,4];
-// ar.push(...ar1);
-// ar.push("abc");
 function getRandomNumber(min, max) {
     return min + Math.trunc(Math.random() * (max - min + 1));
 }
@@ -15,61 +11,59 @@ function getRandomMatrix(rows, columns, min, max) {
     }
     return matrix;
 }
+function getRandomNumberArray(length, min, max) {
+    const array = [];
+    for (let i = 0; i < length; i++) {
+        array.push(getRandomNumber(min, max));
+    }
+    return array;
+}
 
 //  HW-13 Get HTML <ul> string
-function getHtmlUl(array) {
-    array = ['<ul class="list_class">'];
+function getHtmlUl(randomArray) {
     let htmlString = "";
-    let quantity = getRandomNumber(4, 6);
-    let div = "";
+    const tempArray = ['<ul class="list_class">'];
     const liClass = '<li class="item_class">';
-    for (let i = 0; i < quantity; i++) {
-        div = getDivClass();
-        array.push(liClass + "<div " + div + "></div></li>");
+    for (let i = 0; i < randomArray.length; i++) {
+        const divClassType = randomArray[i] === 0 ? 'white' : 'black';
+        tempArray.push(liClass + "<div " + `class="${divClassType}"` + "></div></li>");
     }
-    array.push('</ul>')
-    htmlString = array.join("");
+    tempArray.push('</ul>');
+    htmlString = tempArray.join("");
     return htmlString;
 }
-function getDivClass() {
-    const divClassType = getRandomNumber(0, 1) === 0 ? 'white' : 'black';
-    const divClassResult = `class="${divClassType}"`;
-    return divClassResult;
-}
 
-
+//  HW-13 Transposed Matrix
 function matrixTransp(matrix) {
-    //  TODO
-    //  return transp matrix
-    //  matrixInput =   [[1, 2],        rows[1]/columns[1] = 1 => 
-    //                   [3, 4],
-    //                   [4, 5]]
-    //  matrixOutput =  [[1, 3, 4]
-    //                   [2, 4, 5]]
-    const matrixRes=[];
-    let matrixString = matrix.join(",");
-    const tempMatrixArray=(matrixString);
-    console.log("temp array is "+tempMatrixArray);
-    const length=tempMatrixArray.length;
-    let rowsArray=[];
-    let columnsArray=[];
-    for(let i=0; i<length;i++){
-        if(i%2){
-            columnsArray.push[i]
-        }else{
-            rowsArray.push[i]
+    let columns = matrix.length;
+    let rows = matrix[0].length;
+    let matrixResult = [];
+    let matrixTemporary = [];
+    for (let j = 0; j < rows; j++) {
+        matrixTemporary = [];
+        for (let i = 0; i < columns; i++) {
+            matrixTemporary.push(matrix[i][j]);
         }
-        // (!i%2)?columnsArray.push[i]:rowsArray.push[i];
+        matrixResult.push(matrixTemporary);
     }
-    for(let i=0;i<rowsArray.length;i++){
-        matrixRes.push(rowsArray);
-        for(let j=0;j<columnsArray.length;j++){
-            matrixRes[i].push(columnsArray);
-        }
-    }
-    return matrixRes;
+    return matrixResult;
 }
 
-const matrix = getRandomMatrix(3,2,1,3);
-console.log(matrix);
-console.log(matrixTransp(matrix));
+//  Get HTML <ul> string TEST
+const ulArray1 = getRandomNumberArray(6, 0, 1);
+const ulArray2 = getRandomNumberArray(6, 0, 1);
+console.log("Random div color numbers array is: " + ulArray1);
+console.log("innerHTML string is: " + getHtmlUl(ulArray1));
+console.log("Random div color numbers array is: " + ulArray2);
+console.log("innerHTML string is: " + getHtmlUl(ulArray2));
+
+//  Transposed Matrix TEST
+const matrix1 = getRandomMatrix(3, 2, 1, 9);
+const matrix2 = getRandomMatrix(3, 3, 1, 6);
+const matrix3 = getRandomMatrix(3, 2, 1, 3);
+console.log("Test Matrix:       " + matrix1);
+console.log("Transposed matrix: " + matrixTransp(matrix1));
+console.log("Test Matrix:       " + matrix2);
+console.log("Transposed matrix: " + matrixTransp(matrix2));
+console.log("Test Matrix:       " + matrix3);
+console.log("Transposed matrix: " + matrixTransp(matrix3));
