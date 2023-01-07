@@ -40,9 +40,9 @@ function evenAscOddDescSort(array) {
     return res;
 }
 /*****************************************************************************/
-console.log(`Result of evenOddSort([20, -10, 333, 1000, 552, 7, -7]) is: ${evenOddSort(arraySort).join(", ")}`);
-console.log(`Result of oddEvenSort([20, -10, 333, 1000, 552, 7, -7]) is: ${oddEvenSort(arraySort).join(", ")}`);
-console.log(`Result of evenAscOddDescSort([20, -10, 333, 1000, 552, 7, -7]) is: ${evenAscOddDescSort(arraySort).join(", ")}`);
+console.log(`Result of evenOddSort([20, -10, 333, 1000, 552, 7, -7]) is: ${evenOddSort(array).join(", ")}`);
+console.log(`Result of oddEvenSort([20, -10, 333, 1000, 552, 7, -7]) is: ${oddEvenSort(array).join(", ")}`);
+console.log(`Result of evenAscOddDescSort([20, -10, 333, 1000, 552, 7, -7]) is: ${evenAscOddDescSort(array).join(", ")}`);
 /*****************************************************************************/
 
 //  HW-15
@@ -76,7 +76,7 @@ function getMinMaxAvg(array) {
     /*  I did a lot of Googling.                                                                */
     /*  Probably there is a different, much easier solution, based on our current knowledge.    */
     /********************************************************************************************/
-    
+
     return array.reduce(function (accumulator, currentValue) {
         accumulator.min = Math.min(accumulator.min, currentValue);
         accumulator.max = Math.max(accumulator.max, currentValue);
