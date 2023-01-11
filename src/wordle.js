@@ -5,12 +5,14 @@ let lettersDivs;
 const trialsElement = document.querySelector(".trials-remained");
 const gameResultElement = document.querySelector(".game-result");
 const playAgainElement = document.querySelector(".play-again");
+
 //varibales required for JS logic
 const wordsForGuess = ["pappy", "apple", "table", "gold", "silver", "index",
     "script", "peace", "picture"]
 let trials;
 let word;
 let flGameOver = false;
+
 //functions
 function startGame() {
     word = getWord();
@@ -34,6 +36,9 @@ function fillLettersDivs() {
     lettersDivs = document.querySelectorAll(".letter");
 }
 function onChange() {
+    guessInputElement.style.fontStyle = "normal";
+    // guessInputElement,style.fontWeight="600";
+    guessInputElement.style.color = "#212121";
     if (flGameOver) {
         alert("game is over, press play-again")
     } else {
@@ -46,8 +51,7 @@ function onChange() {
             coloringWord(trialWord);
         }
     }
-
-
+    finishGame();
 }
 function coloringWord(trialWord) {
     const arWord = Array.from(trialWord);
@@ -57,14 +61,28 @@ function coloringWord(trialWord) {
     })
 }
 function getColor(letter, index) {//  green - #459525;    yellow - #c8a111;   "red" - #474b4d
-    let res = "red"
+    let res = "#474b4d"
     if (word.includes(letter)) {
-        res = word[index] == letter ? "green" : "yellow"
+        res = word[index] == letter ? "#459525" : "#c8a111"
     }
     return res;
 }
 function finishGame() {
-    //TODO
+    if (trials <= 0) {
+        // alert("YOU LOST!");
+        gameResultElement.innerHTML="YOU LOST!";
+        playAgainElement.style.display="block";
+        flGameOver = true;
+    }
+     else {
+        const guessedWord = guessInputElement.value;
+        if (guessedWord === word) {
+            gameResultElement.innerHTML="YOU WON!";
+            playAgainElement.style.display="block";
+            flGameOver = true;
+        }
+    }
 }
+
 //actions
 startGame();
