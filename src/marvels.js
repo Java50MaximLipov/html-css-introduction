@@ -1,14 +1,3 @@
-//parsing the source of questions-answers from text file
-// let questionsWords=[];
-// fetch('qa.json')
-//   .then(response => response.json())
-//   .then(data => {
-//     questionsWords = data.map(item => [item.question, item.answer])
-//     // the rest of your code here
-//   });
-
-
-
 //references to HTML elements
 const questionElement = document.getElementById("question");
 const wordInputElement = document.getElementById("word-input");
@@ -17,14 +6,12 @@ const letterInputElement = document.getElementById("letter-input");
 const wordElement = document.querySelector(".word");
 const resultMessage = document.getElementById("result-message");
 const playAgain = document.getElementById("play-again");
-let wordLettersElement;
 
 //global variables
-const questionsWords = [["question1", "answer1"], ["question2", "answer2"]];
+const questionsWords = window.questionsAnswersList;
 let currentIndex = 0;
 let initialLettersNumber;
 let remainedLettersNumber;
-let userLetter;
 let answerWord = "";
 
 //functions
@@ -32,43 +19,31 @@ function startGame() {
     wordInputElement.value = '';
     wordInputElement.readOnly = true;
     letterInputElement.readOnly = false;
+    currentIndex = Math.floor(Math.random() * questionsWords.length);
     questionElement.innerHTML = questionsWords[currentIndex][0];
-    answerWord = questionsWords[currentIndex][1];
-    initialLettersNumber = Math.floor(answerWord.length * 0.3);
+    answerWord = questionsWords[currentIndex][1].toUpperCase();
+    initialLettersNumber = Math.ceil(answerWord.length * 0.3);
     remainedLettersNumber = initialLettersNumber;
-    remainedLettersElement.innerHTML = `Keep going. You still have ${initialLettersNumber} tries`;
+    remainedLettersElement.innerHTML = `Let's start. You have ${initialLettersNumber} tries.`;
     playAgain.style.display = 'none';
     resultMessage.innerHTML = '';
     wordElement.innerHTML = getWordDivs();
 }
 function getWordDivs() {
-    return Array.from(answerWord).map((letter) => `<div class="letter">${letter}</div>`).join('');
+    return Array.from(answerWord.toUpperCase()).map((letter) => `<div class="letter">${letter}</div>`).join('');
 }
 function checkWord() {
-    if (wordInputElement.value === answerWord) {
-        resultMessage.innerHTML = "Correct answer! You Win!";
-    } else {
-        resultMessage.innerHTML = "You Lose!";
-    }
     wordInputElement.readOnly = true;
+    resultMessage.innerHTML = wordInputElement.value.toUpperCase() === answerWord ? "Correct answer! You Won!" : "You Lost!";
     finishGame();
 }
 function processLetter() {
-    let userLetter = letterInputElement.value;
+    let userLetter = letterInputElement.value.toUpperCase();
     const wordArray = document.querySelectorAll(".letter");
-    if (answerWord.includes(userLetter)) {
-        wordArray.forEach(function (_, index) {
-            if (answerWord[index] === userLetter) {
-                wordArray[index].style.backgroundColor = "white";
-            }
-        });
-    }
+    answerWord.includes(userLetter) ? wordArray.forEach((_, index) =>
+        answerWord[index] === userLetter ? wordArray[index].style.backgroundColor = "white" : null) : null;
     remainedLettersNumber--;
-    if (remainedLettersNumber > 0) {
-        remainedLettersElement.innerHTML = `Keep going. You still have ${remainedLettersNumber} tries`;
-    } else {
-        takeChance();
-    }
+    remainedLettersNumber > 0 ? remainedLettersElement.innerHTML = `Keep going. You still have ${remainedLettersNumber} tries.` : takeChance();
 }
 function takeChance() {
     wordInputElement.readOnly = false;
@@ -77,7 +52,8 @@ function takeChance() {
     remainedLettersElement.innerHTML = "Good luck with the guess!";
 }
 function finishGame() {
-    //TODO
+    const wordArray = document.querySelectorAll(".letter");
+    wordArray.forEach((_, index) => wordArray[index].style.backgroundColor = "white");
     playAgain.style.display = 'block';
 }
 
