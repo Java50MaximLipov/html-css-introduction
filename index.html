@@ -5,30 +5,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wordle</title>
-    <link rel="stylesheet" href="styles/wordle.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="images/wordle-logo.svg" type="image/x-icon">
+    <title>marvels-field</title>
+    <link rel="stylesheet" href="styles/marvels.css">
 </head>
 
 <body>
     <header>
-        <h3 class="logo">WORDLE</h3>
+        <h3 class="logo">Marvels Field Game</h3>
     </header>
-    <input class="guess-input" type="text" onchange="onChange()" placeholder="enter guess word">
-    <section class="guess-letters">
+    <section class="field">
+        <p id="question"></p>
+        <p>You can try to guess a word.</p>
+        <p>But rememner that you have only one try!</p>
+        <input type="text" readonly onchange="checkWord()" id="word-input" placeholder="guess word"
+            onfocus="this.value=''">
+        <button id="guess-button" onclick="takeChance()">guess</button>
+        <p>OR guess letters, one-by-one.</p>
+        <input type="text" minlength="1" maxlength="1" onchange="processLetter()" id="letter-input"
+            placeholder="guess leter" onfocus="this.value=''">
+        <p id="letters-remained"></p>
+
 
     </section>
-    <section class="game-status">
-        <p class="trials-remained"></p>
-        <p class="game-result"></p>
-        <button class="play-again" onclick="startGame()">Play again</button>
-    </section>
+    <section class="word">
 
-    <script src="src/wordle.js"></script>
+    </section>
+    <section class="result">
+        <p id="result-message"></p>
+        <button onclick="startGame()" id="play-again">play again</button>
+    </section>
+    <script src="src/marvels.js"></script>
 </body>
 
 </html>
