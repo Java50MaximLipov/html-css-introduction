@@ -1,3 +1,5 @@
+//  HW-19
+
 function createEmployee(id, name, birthYear, salary, city, country) {
     return { id, name, birthYear, salary, address: { city, country } }
 }
@@ -9,34 +11,65 @@ const employees = [
     createEmployee(127, "Moshe", 2000, 15000, "Rehovot", "Israel"),
     createEmployee(128, "Goga", 1993, 10000, "Tbilisi", "Georgia"),
     createEmployee(129, "Sasha", 2000, 25000, "Ramat Gan", "Israel"),
-    createEmployee(130, "Victor", 2003, 10000, "Arad", "Israel")
+    createEmployee(130, "Victor", 2003, 10000, "Texas", "USA")
 ]
 
-//  HW-18
-function getEmployee(employees, id) {
-    return employees.find((obj) => obj.id === id);
+//  task #1
+function getMostPopulatedCountry(employees) {
+    //  returns country with most amount of employees
+    return getCountriesByPopulation(employees)[0][0];
+
 }
-function getEmployeesBySalary(employees, salaryFrom, salaryTo) {
-    return employees.filter((obj) => obj.salary >= salaryFrom && obj.salary <= salaryTo);
-}
-function getEmployeesByCity(employees, city) {
-    return employees.filter((obj) => obj.address.city === city);
-}
-function getEmployeeNames(employees) {
-    return employees.map((obj) => obj.name);
-}
-function sortEmployeesByAge(employees) {
-    return employees.sort((objA, objB) => objA.birthYear - objB.birthYear);
-}
-function computeSalaryBudget(employees) {
-    return employees.reduce((res, obj) => res + obj.salary, 0);
+//  task #2
+function getMostPopulatedCountries(employees, counter) {
+    //  returns a given number (counter) of countries with most amount of employees
+    return getCountriesByPopulation(employees).map(element => element[0]).slice(0, counter);
+    // return resArr;
 }
 
-//  tests
-console.log(getEmployee(employees,129));
-console.log(getEmployeesBySalary(employees,10000,15000));
-console.log(getEmployeesByCity(employees,"London"));
-console.log(getEmployeeNames(employees));
-console.log(sortEmployeesByAge(employees));
-console.log(computeSalaryBudget(employees));
+//  Country population proccess functions
+function getCountriesByPopulation(employees) {
+    const countryObj = getCountriesOccurrences(employees);
+    const countryArr = Object.entries(countryObj);
+    return countryArr.sort(compareCountriesByPopulation);
+}
+function getCountriesOccurrences(employees) {
+    const countriesArray = employees.map(empl => empl.address.country);
+    const result = {};
+    countriesArray.forEach(country => {
+        if (!result[country]) {
+            result[country] = 1;
+        } else {
+            result[country]++;
+        }
+    });
+    return result;
+}
+function compareCountriesByPopulation(entry1, entry2) {
+    let result = entry2[1] - entry1[1];
+    if (result == 0) {
+        result = entry1[1] < entry2[1] ? 1 : -1;
+    }
+    return result;
+}
 
+//  task #3
+function isAnagram(word, anagram) {
+    //  returns true if a given anagram is indeed an angram of a given word
+    let wordArraySorted = Object.entries(getElementsOccurrences(Array.from(word).sort()));
+    let anagramArraySorted = Object.entries(getElementsOccurrences(Array.from(anagram).sort()));
+    return wordArraySorted.every((array, index) => {
+        return ((array[0] === anagramArraySorted[index][0]) && (array[1] === anagramArraySorted[index][1]))
+    });
+}
+function getElementsOccurrences(elementsArray) {
+    const result = {};
+    elementsArray.forEach(element => {
+        if (!result[element]) {
+            result[element] = 1;
+        } else {
+            result[element]++;
+        }
+    });
+    return result;
+}
