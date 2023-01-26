@@ -3,10 +3,6 @@ const httpPrefix = "https://image.tmdb.org/t/p/w500";
 const data = JSON.parse(jsonData);
 const bodyElement = document.querySelector("ul");
 bodyElement.innerHTML += getAnchors()
-
-//  NEW CODE END
-
-//  OLD CODE
 const detailsImageElement = document.querySelector(".details-image");
 const detailsTitle = document.querySelector(".details-title");
 const detailsContainer = document.querySelector(".details-container");
@@ -15,43 +11,21 @@ const mainElement = document.querySelector(".main-class");
 const hideButtonElement = document.getElementById("hide-button");
 const HIDDEN = "hidden";
 const IS_POINT = "is-point";
-
 function showDetails(index) {
     mainElement.classList.remove(HIDDEN);
     detailsContainer.classList.add(IS_POINT);
-    //  NEW CODE
-    // console.log(`${httpPrefix}${data.results[index].backdrop_path}`)
-    detailsImageElement.src=`${httpPrefix}${data.results[index].backdrop_path}`
-    //  NEW CODE END
+    detailsImageElement.src = `${httpPrefix}${data.results[index].backdrop_path}`;
+    detailsTitle.innerHTML = `${data.results[index].original_title}`;
     setTimeout(function () {
-        detailsContainer.classList.remove(IS_POINT); }, 500);
-    // });
+        detailsContainer.classList.remove(IS_POINT);
+    }, 500);
 }
-
 function hideDetails() {
     mainElement.classList.add(HIDDEN);
 }
-function setDetails(anchor) {   //  need to cleaned the unnused elements
-    const dataImage = anchor.getAttribute("data-details-image");
-    detailsImageElement.src = dataImage;
-    showDetails();
-    detailsTitle.innerHTML = anchor.getAttribute("data-original-title");
-    // detailsTitle.innerHTML = anchor.getAttribute(`${movie.original_title}`);
-    const color = anchor.getAttribute("data-text-color");
-    if (color) {
-        detailsTitle.style.color = color;
-    } else {
-        detailsTitle.style.color = '';
-    }
-}
-
 hideButtonElement.addEventListener("click", hideDetails);
-//  OLD CODE END
-
-//  NEW CODE
 function getAnchors() {
     return getListItems();
-    // return `${getListItems()}`
 }
 function getListItems() {
     const itemsArray = data.results.map(movie =>
@@ -65,9 +39,7 @@ function getListItems() {
         </li>`);
     return itemsArray.join('');
 }
-//  NEW CODE
 anchorElements.forEach((anchor, index) =>
- anchor.addEventListener("click",function(){
-    showDetails(index);
- }))
-//  NEW CODE END
+    anchor.addEventListener("click", function () {
+        showDetails(index);
+    }));
